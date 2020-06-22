@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a href="{%url 'index'%}" class="navbar-brand"> Trato Hecho
+        <img src="{% static 'img/saludo_nav.png' %}" alt="" style="width: 50px; height: auto;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto"></ul>
+        {% if user.is_authenticated %}
+          <li class="nav">
+            <a class="nav-link" href="{% url 'list' %}">Servicios</a>
+          </li>
+          <li class="nav">
+            <a class="nav-link" href="">Categorias</a>
+          </li>
+          <li class="nav">
+            <a class="nav-link" href="">Publicar</a>
+          </li>
+        {% endif %}
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+        {% if user.is_authenticated %}
+        <a href="{% url 'detail' request.user.username %}">
+          {% if request.user.person.picture %}
+            <img src="{{request.user.person.picture.url}}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
+          {% endif %}
+          </a>
+          <div class="btn-group">
+            <a href="{% url 'detail' request.user.username %}" class="btn btn-outline-primary btn-sm">{{request.user.username}}</a>
+            <a href="#" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu text-center">
+              <li><a href="{% url 'detail' request.user.username %}">Mi perfil</a></li>
+              <li><a href="{% url 'log_out'%}">Salir</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <a class="nav-item float-lg-right btn btn-outline-primary mr-2" href="{%url 'sign_up'%}">Registrate</a>
+          <a class="nav-item float-lg-right btn btn-outline-primary mr-2" href="{%url 'log_in'%}">Ingresar</a>
+        {% endif %}
+      </form>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+
+
+{% block js %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% endblock js %}
+  
+    

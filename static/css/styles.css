@@ -1,0 +1,27 @@
+.work{
+    background-image: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ), 
+    url('/static/img/work.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.color-expand:hover{
+    filter: saturate(3);
+    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -webkit-transition: all 500ms;
+}
+
+.body{
+    background-color: rgb(247, 247, 241);
+}
+
+.target{
+    background-color: rgb(255, 255, 255);
+    border-width: 10em;
+    border-radius: 0.5em;
+}

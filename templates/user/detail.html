@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block nav %}
+    {% include 'base/navbar.html' %}
+{% endblock nav %}
+    
+
+
+{% block content %}
+    <div class="container mb-2 target pt-4 pb-4" style="margin-top: 8em;">
+        <div class="row">
+            <div class="col-sm-4 d-flex justify-content-center">
+                <img src="{{ user.person.picture.url }}" alt="@{{user.username}}" class="rounded-circle" width="150px" height="150px">
+            </div>
+            <div class="col-sm-8 pt-4">
+                <h4 style="font-weight: 100;">
+                    {{ user.username}}
+                    {% if user == request.user %}
+                    <a href="{% url 'update_person' %}" class="ml-5 btn btn-outline-primary">Editar perfil</a>
+                    {% else %}
+                    <a href=""><img src="{% static 'img/corazon.png' %}" alt="" width="30" height="auto" class="color-expand"></a>
+                    {% endif %}
+                </h4>
+                <div class="row mt-2" style="font-size: 1.2em;">
+                    <div class="col-sm-4">
+                        <span class="badge badge-pill badge-primary mr-2">12</span><img src="{% static 'img/corazon.png' %}" alt="" width="15" height="auto">
+                    </div>
+                    <div class="col-sm-4 mt-2">
+                        <a href=""><span class="badge badge-pill badge-primary mr-2">12</span> Comentarios</a>
+                    </div>
+                    <div class="col-sm-4 mt-2">
+                        <a href="">
+                            <img src="{% static 'img/saludo_nav.png' %}" alt="" style="width: 30px; height: auto;">
+                            Ver Servicios
+                        </a>
+                    </div>
+                </div>
+                <div class="row mt-4 pb-4">
+                    <div class="col-sm-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer%}
+{% endblock %}

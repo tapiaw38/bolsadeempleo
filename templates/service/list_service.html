@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block nav %}
+    {% include 'base/navbar.html' %}
+{% endblock nav %}
+
+
+{% block content %}
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            {% for service in service %}
+            <div class="col-lg-4 offset-lg-4 mb-3 pt-4 target">
+                <div class="media">
+                    <a href="{% url 'detail' service.user.username %}">
+                        <img class="mr-3 rounded-circle" src="{{ service.person.picture.url }}" alt="@{{ service.user.name }}" width="50" height="50">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="mt-0">@{{service.user.username}}</h5>
+                        <span class="badge badge-secondary">{{service.direction}}</span>
+                        <a class="" href="{{service.facebook_url}}">Facebook</a>
+                    </div>
+                </div>
+                {% if service.picture_logo %}
+                <img class="img-fluid mt-3 border rounded" src="{{ service.picture_logo.url }}" alt="{{ service.title }}"><span class="badge badge-primary">{{service.category}}</span>
+                {% endif %}
+                <h5 class="ml-1 mt-1">{{service.title}}</h5>
+                <a href="" class="float-right mt-4 mr-2">
+                    <img src="{% static 'img/contrato.jpg' %}" alt="" style="width: 60px; height: auto;">
+                </a>
+                <p class="ml-1 mt-1">{{service.description}}</p>
+                <span class="badge">{{service.created}}</span>
+                <hr><br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock%}

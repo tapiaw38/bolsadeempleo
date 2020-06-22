@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block nav %}
+  {% include 'base/navbar.html' %}
+{% endblock %}
+  
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row justify-content-md-center" style="height: 900px;">
+    <div class="col work text-center" style="height: 100%;">
+      <h2 class="mt-5 mb-4 font-weight-bolder text-uppercase text-light">Publica y busca servicios en nuestra plataforma.</h2>
+      <h4 class="text-light">Encontraras a los mejores de cada categoria.</h4>
+      <dir class="media justify-content-md-center mt-5">
+        <img src="{% static 'img/servicio.png' %}" alt="" width="300" height="auto">
+      </dir>
+    </div>
+  </div>
+</div>
+
+{% endblock%}
+
+{% block footer %}
+<!-- Footer -->
+<footer class="site-footer bg-primary pt-4 pb-4">
+  <div class="container">
+    <div class="row pt-2 mt-5 text-center text-light">
+      <div class="col-md-12">
+        <p>
+        Copyright&copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  Departamento de Informática
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

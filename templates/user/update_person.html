@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+
+{% block nav %}
+    {% include 'base/navbar.html' %}
+{% endblock nav %}
+
+
+{% block content %}
+
+<div class="container pt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-6 col-sm-10 m-2 pt-4 target">
+            <form action="{% url 'update_person' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {% if form.errors  %}
+                    <p class="alert alert-danger">{{form.errors}}</p>
+                {% endif %}
+                    
+                <div class="media pt-4">
+                    
+                {% if person.picture %}
+                    <img src="{{person.picture.url}}" alt="" class="rounded-circle" height="50px" width="50px">
+                {% else %}
+                    <img src="{% static 'img/cuenta.png' %}" alt="" class="rounded-circle" height="50px" width="50px">
+                {% endif %}
+                    <div class="media-body">
+                        <h5 class="ml-4">@{{user.username}} | {{user.get_full_name}}</h5>
+                        <p class="ml-4"><input type="file" name="picture" required="true"></p>
+                    </div>
+                </div>
+    
+                <hr><br>
+    
+                <div class="form-group">
+                    <label for="">Número de Telefono</label>
+                    <input type="text" class="form-control" name="phone_number" placeholder="3837690000" value="{{person.phone_number}}">
+                </div>
+    
+    
+                <div class="form-group">
+                    <label for="">Dirección</label>
+                    <input type="text" class="form-control" name="direction" placeholder="Barrio, calle, N° de casa" value="{{person.direction}}">
+                </div>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Actualizar información</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+{% block footer%}
+{% endblock %}

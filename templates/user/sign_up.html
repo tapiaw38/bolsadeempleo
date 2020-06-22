@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+{% load static%}
+{% block content %}
+<div class="container pt-4 pb-4">
+    <div class="row align-items-center">
+        <div class="col-lg-4 offset-lg-4 target pt-4">
+            <form class="form-signin" method="POST" action="{%url 'sign_up'%}">
+            {% csrf_token %}
+                <div class="text-center mb-4">
+                  <a href="{%url 'index'%}">
+                    <img class="mb-4" src="{%static 'img/saludo.png'%}" alt="" width="75" height="75">
+                  </a>
+                  <h1 class="h3 mb-3 font-weight-normal">Registro de usuario</h1>
+                </div>
+                {% if messages %}
+                {% for message in messages%}
+                <div class="text-center">
+                    <p class="alert alert-danger">{{message}}</p>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="form-label-group pt-2">
+                  <label for="inputEmail">Nombre de usuario</label>
+                  <input type="text" id="inputText" class="form-control" placeholder="User name" required autofocus name="username">
+                </div>
+              
+                <div class="form-label-group pt-2">
+                  <label for="inputPassword">Contraseña</label>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+                </div>
+
+                <div class="form-label-group pt-2">
+                  <label for="inputPassword">Confirmar contraseña</label>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password confirmation" required name="password_confirmation">
+                </div>
+
+                <div class="form-label-group pt-2">
+                  <label for="inputPassword">Nombre</label>
+                  <input type="text" id="inputText" class="form-control" placeholder="First name" required name="first_name">
+                </div>
+
+                <div class="form-label-group pt-2">
+                  <label for="inputPassword">Apellido</label>
+                  <input type="text" id="inputText" class="form-control" placeholder="Last name" required name="last_name">
+                </div>
+
+                <div class="form-label-group pt-2 pb-2">
+                  <label for="inputPassword">Email</label>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required name="email">
+                </div>
+              
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Registraté</button> 
+                <p class="mt-5 mb-3 text-muted text-center">&copy; Departamento de Informática <script>document.write(new Date().getFullYear());</script></p>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}
