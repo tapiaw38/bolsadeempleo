@@ -1,25 +1,10 @@
 from django import forms
 from service.models import Service
-"""
-class ServiceForm(forms.ModelsForm):
+
+
+class ServiceForm(forms.ModelForm):
+
     class Meta:
+
         model = Service
-
-        fiedls = [
-            'user',
-            'person', 
-            'category', 
-            'specialty', 
-            'picture_service',
-            'date',
-        ]
-
-        labels = {
-            'user':,
-            'person', 
-            'category', 
-            'specialty', 
-            'picture_service',
-            'date',
-        }
-"""
+        fields = ('user', 'person', 'title', 'category', 'description', 'direction', 'facebook_url', 'picture_logo')

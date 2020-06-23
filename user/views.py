@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from user.models import Person
 from user.forms import PersonForm
@@ -16,7 +17,7 @@ class index(TemplateView):
     template_name = 'user/index.html'
 
 
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, DetailView):
     template_name = 'user/detail.html'
     slug_field = 'username'
     slug_url_kwarg = 'username'
@@ -26,7 +27,7 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user =  self.get_object()
-        context['service'] = Service.objects.filter(user=user).order_by('-created')
+        context['services'] = Service.objects.filter(user=user).order_by('-created')
         return context
     
 
