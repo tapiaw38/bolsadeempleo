@@ -29,15 +29,7 @@
 
                     {# Category field #}
                     <div class="form-group">
-                        <input
-                            class="form-control {% if form.category.errors %}is-invalid{% endif %}"
-                            type="text"
-                            name="category"
-                            placeholder="Category"
-                        >
-                        <div class="invalid-feedback">
-                            {% for error in form.category.errors %}{{ error }}{% endfor %}
-                        </div>
+                        {{form.category}}
                     </div>
 
                     {# Description field #}
