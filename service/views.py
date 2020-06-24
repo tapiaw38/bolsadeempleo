@@ -15,14 +15,12 @@ def service_list(request):
     contexto = {'service': service}
     return render (request, 'service/list_service.html', contexto)
 '''
-class service_list(LoginRequiredMixin, ListView):
+class ServiceList(LoginRequiredMixin, ListView):
     template_name = 'service/list_service.html'
     model = Service
     ordering = ('-created')
-    paginate_by = 3
+    paginate_by = 30
     context_object_name = 'service'
-
-
 
 class ServiceDetail(LoginRequiredMixin, DetailView):
     template_name = 'service/detail.html'
@@ -41,15 +39,17 @@ class CreateService(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         context['person'] = self.request.user.person
-        """
-        context['title'] = self.request.user
-        context['category'] = self.request.user.person
-        context['description'] = self.request.user
-        context['direction'] = self.request.user.person
-        context['facebook_url'] = self.request.user
-        context['picture_logo'] = self.request.user.person
-        """
         return context
+
+@login_required
+def category_search(request, search):
+    if search:
+        service = Service.objects.filter(category__contains=search)
+    else:
+        service = Service.objects.all()
+    context = {'service':service}
+    return render(request, 'service/search.html',context)
+
 
 """
 @login_required

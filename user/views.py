@@ -6,12 +6,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from user.models import Person
 from user.forms import PersonForm
-from django.views.generic import CreateView, ListView, UpdateView, TemplateView, DetailView
+from django.views.generic import CreateView, ListView, UpdateView, TemplateView, DetailView, FormView
 from django.db.utils import IntegrityError
 from django.urls import reverse
+from django.urls import reverse_lazy
+from django.contrib.auth import views as auth_views
+
 
 from service.models import Service
 # Create your views here.
+
 
 class index(TemplateView):
     template_name = 'user/index.html'
@@ -31,8 +35,6 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         return context
     
 
-
-
 def log_in(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -51,10 +53,15 @@ def sign_up(request):
         username = request.POST['username']
         password = request.POST['password']
         password_confirmation = request.POST['password_confirmation']
-
+        
+        # Validate password!
         if  password != password_confirmation:
             messages.error(request, "Las contraseñas ingresadas no coinciden")
             return render(request, 'user/sign_up.html')
+        if len(password) < 7 or len(password_confirmation) < 7:
+            messages.error(request, "La contraseña debe tener 8 o más caracteres")
+            return render(request, 'user/sign_up.html')
+        # Validate User!
         for i in username:
             if i == " ":
                 messages.error(request, "El nombre de usuario no puede tener espacios en blanco")

@@ -10,27 +10,27 @@
         <ul class="navbar-nav mr-auto"></ul>
         {% if user.is_authenticated %}
           <li class="nav">
-            <a class="nav-link" href="{% url 'list' %}">Servicios</a>
+            <a class="nav-link" href="{% url 'list' %}">Publicaciones</a>
           </li>
           <li class="nav dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categorias
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="">Compras y Shopping</a>
-              <a class="dropdown-item" href="">Informática y Electrónica</a>
-              <a class="dropdown-item" href="">Construcción y Contratistas</a>
-              <a class="dropdown-item" href="">Deportes y Recreacción</a>
-              <a class="dropdown-item" href="">Educación</a>
-              <a class="dropdown-item" href="">Hogar y Jardin</a>
-              <a class="dropdown-item" href="">Industria y Agricultura</a>
-              <a class="dropdown-item" href="">Medios de Comunicación</a>
-              <a class="dropdown-item" href="">Servicios Profecionales</a>
-              <a class="dropdown-item" href="">Ropa y Accesorios</a>
-              <a class="dropdown-item" href="">Salud y Medicina</a>
-              <a class="dropdown-item" href="">Servicios Legales y Financieros</a>
-              <a class="dropdown-item" href="">Viajes y Trasportes</a>
-              <a class="dropdown-item" href="">Gastronomia</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Compras y Shopping'%}">Compras y Shopping</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Informática y Electrónica'%}">Informática y Electrónica</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Construcción y Contratistas'%}">Construcción y Contratistas</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Deportes y Recreacción'%}">Deportes y Recreacción</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Educación'%}">Educación</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Hogar y Jardin'%}">Hogar y Jardin</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Industria y Agricultura'%}">Industria y Agricultura</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Medios de Comunicación'%}">Medios de Comunicación</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Servicios Profecionales'%}">Servicios Profecionales</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Ropa y Accesorios'%}">Ropa y Accesorios</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Salud y Medicina'%}">Salud y Medicina</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Servicios Legales y Financieros'%}">Servicios Legales y Financieros</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Viajes y Trasportes'%}">Viajes y Trasportes</a>
+              <a class="dropdown-item" href="{% url 'search_category' 'Gastronomia'%}">Gastronomia</a>
             </div>
           </li>
           <li class="nav">
@@ -43,6 +43,8 @@
         <a href="{% url 'detail' request.user.username %}">
           {% if request.user.person.picture %}
             <img src="{{request.user.person.picture.url}}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
+          {% else %}
+            <img src="{% static 'img/cuenta.png' %}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
           {% endif %}
           </a>
           <div class="btn-group">
