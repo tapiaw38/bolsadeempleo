@@ -107,5 +107,5 @@ def update_person(request):
 @login_required
 def log_out(request):
     logout(request)
-    return redirect('log_in')
+    return redirect('index')
 

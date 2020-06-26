@@ -1,16 +1,17 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary sticky-top">
     <div class="container">
-      <a href="{%url 'index'%}" class="navbar-brand"> Trato Hecho
-        <img src="{% static 'img/saludo_nav.png' %}" alt="" style="width: 50px; height: auto;"></a>
+      <a href="{%url 'index'%}" class="navbar-brand mr-5"> CONTACTAME
+        <img src="{% static 'img/contacto.png' %}" alt="" style="width: 50px; height: auto;"></a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav mr-auto ">
         {% if user.is_authenticated %}
-          <li class="nav">
-            <a class="nav-link" href="{% url 'list' %}">Publicaciones</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'list' %}">Inicio</a>
           </li>
           <li class="nav dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,8 +34,8 @@
               <a class="dropdown-item" href="{% url 'search_category' 'Gastronomia'%}">Gastronomia</a>
             </div>
           </li>
-          <li class="nav">
-            <a class="nav-link" href="{% url 'create' %}">Publicar</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create' %}">Publicar <img src="{% static 'img/anunciar.png' %}" alt="" width="30" height="30"></a>
           </li>
         {% endif %}
         </ul>
@@ -47,17 +48,17 @@
             <img src="{% static 'img/cuenta.png' %}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
           {% endif %}
           </a>
-          <div class="btn-group">
-            <a href="{% url 'detail' request.user.username %}" class="btn btn-outline-primary btn-sm">{{request.user.username}}</a>
-            <a href="#" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu text-center">
+          <div class="btn-group float-sm-right">
+            <a href="{% url 'detail' request.user.username %}" class="btn btn-outline-secondary btn-sm">{{request.user.username}}</a>
+            <a href="#" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu pl-3">
               <li><a href="{% url 'detail' request.user.username %}">Mi perfil</a></li>
               <li><a href="{% url 'log_out'%}">Salir</a></li>
             </ul>
           </div>
         {% else %}
-          <a class="nav-item float-lg-right btn btn-outline-primary mr-2" href="{%url 'sign_up'%}">Registrate</a>
-          <a class="nav-item float-lg-right btn btn-outline-primary mr-2" href="{%url 'log_in'%}">Ingresar</a>
+          <a class="nav-item float-lg-right btn btn-outline-secondary mr-2" href="{%url 'sign_up'%}">Registrate</a>
+          <a class="nav-item float-lg-right btn btn-outline-secondary mr-2" href="{%url 'log_in'%}">Ingresar</a>
         {% endif %}
       </form>
       </div>

@@ -7,9 +7,11 @@
             <form class="form-signin" method="POST" action="{%url 'sign_up'%}">
             {% csrf_token %}
                 <div class="text-center mb-4">
+                  <!--
                   <a href="{%url 'index'%}">
                     <img class="mb-4" src="{%static 'img/saludo.png'%}" alt="" width="75" height="75">
                   </a>
+                  -->
                   <h1 class="h3 mb-3 font-weight-normal">Registro de usuario</h1>
                 </div>
                 {% if messages %}

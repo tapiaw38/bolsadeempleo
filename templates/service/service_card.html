@@ -1,5 +1,5 @@
 {% load static %}
-<div class="col-lg-4 offset-lg-4 mb-3 pt-4 target">
+<div class="col-lg-4 col-sm-8 offset-lg-4 mb-3 pt-4 target">
     <div class="media">
         <a href="{% url 'detail' service.user.username %}">
             <img class="mr-3 rounded-circle" src="{{ service.person.picture.url }}" alt="@{{ service.user.name }}" width="50" height="50">
@@ -11,13 +11,24 @@
         </div>
     </div>
     {% if service.picture_logo %}
-    <img class="img-fluid mt-3 border rounded" src="{{ service.picture_logo.url }}" alt="{{ service.title }}"><span class="badge badge-primary">{{service.category}}</span>
-    {% endif %}
-    <h5 class="ml-1 mt-1">{{service.title}}</h5>
-    <a href="" class="float-right mt-4 mr-2">
-        <img src="{% static 'img/contrato.jpg' %}" alt="" style="width: 60px; height: auto;">
+    <a href="" data-toggle="modal" data-target="#{{service.user.username}}">
+        <img class="img-fluid mt-3 border rounded" src="{{ service.picture_logo.url }}" alt="{{ service.title }}"><span class="badge badge-primary">{{service.category}}</span>
     </a>
-    <p class="ml-1 mt-1">{{service.description}}</p>
-    <span class="badge">{{service.created}}</span>
-    <hr><br>
+    
+    {% endif %}
+    <h5 class="ml-0 mt-1">{{service.title}}</h5>
+    <p class="ml-0 mt-0">{{service.description}}</p>
+    <span class="badge ml-0 mt-0">{{service.created}}</span>
+    <div class="mt-0 mb-3">
+        <hr>
+        <a href="" class="mb-3">
+            <img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30">
+        </a>
+        <span class="badge badge-pill ml-1 mb-1 p-1" style="background-color: rgb(255, 192, 31);">12</span>
+        <a href="" class="mb-3 float-right">
+            <img src="{% static 'img/con.png' %}" alt="" width="40" height="40">
+        </a>
+    </div>
 </div>
+
+{% include 'service/image_modal.html' %}
