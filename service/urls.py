@@ -6,5 +6,6 @@ urlpatterns = [
     path('lista/', views.ServiceList.as_view(), name='list'),
     path('new/', views.CreateService.as_view(), name = 'create'),
     path('service/<int:pk>/', views.ServiceDetail.as_view(), name = 'service_detail'),
-    path("search/<str:search>/", views.category_search , name="search_category")
+    path("search/<str:search>/", views.category_search , name="search_category"),
+    path("like/", views.like_service, name="like"),
 ]

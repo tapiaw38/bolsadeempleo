@@ -9,6 +9,9 @@
             <span class="badge badge-secondary">{{service.direction}}</span>
             <a class="" href="{{service.facebook_url}}">Facebook</a>
         </div>
+        <a href="" class="mb-3 float-right">
+            <img src="{% static 'img/con.png' %}" alt="" width="40" height="40">
+        </a>
     </div>
     {% if service.picture_logo %}
     <a href="" data-toggle="modal" data-target="#{{service.user.username}}">
@@ -21,14 +24,24 @@
     <span class="badge ml-0 mt-0">{{service.created}}</span>
     <div class="mt-0 mb-3">
         <hr>
-        <a href="" class="mb-3">
-            <img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30">
-        </a>
-        <span class="badge badge-pill ml-1 mb-1 p-1" style="background-color: rgb(255, 192, 31);">12</span>
-        <a href="" class="mb-3 float-right">
-            <img src="{% static 'img/con.png' %}" alt="" width="40" height="40">
-        </a>
+        <!--
+        <form class="form-inline" action="{% url 'like' %}" method="POST" >
+            {% csrf_token %}
+            <input type="hidden" name='{{service.id}}' value="{{service.id}}">
+            
+            {% if service.user not in service.liked.all %}
+                <button class="btn" type="submit"><img src="{% static 'img/estrella.png' %}" alt="" width="35" height="35" class="color-expand"></button>
+            {% else %}
+                <button class="btn" type="submit"><img src="{% static 'img/estrella.png' %}" alt="" width="35" height="35"></button>
+            {% endif %}
+            <span class="badge badge-pill mb-1 p-1 text-light d-inline mt-2" style="background-color: rgb(255, 192, 31);">{{service.liked.all.count}} Estrellas</span>
+        </form>
+        -->
+
+        <a type="button" class="like" name='{{service.id}}'><img src="{% static 'img/estrella.png' %}" alt="" width="35" height="35"class="color-expand"></a>
+        <span class="badge badge-pill mb-1 p-1 text-light d-inline mt-2" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
     </div>
 </div>
 
 {% include 'service/image_modal.html' %}
+

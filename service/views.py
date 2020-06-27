@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from service.models import Service
+from django.shortcuts import render, redirect, get_object_or_404
+from service.models import Service, Like
 from service.forms import ServiceForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
-
+import json
+from django.http import HttpResponse
 # Create your views here.
 
 '''
@@ -51,7 +52,36 @@ def category_search(request, search):
     return render(request, 'service/search.html',context)
 
 
+@login_required
+def like_service(request):
+    user = request.user.person
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id')
+        service_obj = get_object_or_404(Service,id=service_id)
+
+        if user in  service_obj.liked.all():
+            service_obj.liked.remove(user)
+        else:
+            service_obj.liked.add(user)
+        like, created_like = Like.objects.get_or_create(person=user,service_id=service_id)
+
+        if not created_like:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value == 'Like'
+        like.save()
+        context={'likes_count':service_obj.num_likes, 'service_pk':service_obj.id}
+    return HttpResponse(json.dumps(context), content_type='application/json')
+
+    #return redirect('list')
+
+
 """
+
+        context={'likes_count':service_obj.num_likes}
+    return HttpResponse(json.dumps(context), content_type='list')
+
 @login_required
 def create_service(request):
     if request.method == 'POST':

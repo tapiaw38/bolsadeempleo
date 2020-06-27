@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
-    
 </head>
 <body class="body">
   <!-- Facebook -->
@@ -32,6 +31,28 @@
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script>
+    $('.like').click(function(){
+    $.ajax({
+       type: "POST",
+       url: "{% url 'like' %}",
+       data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+       dataType: "json",
+       success: function(response) {
+           //alert(' likes count is now ' + response.likes_count);
+           var count = "";
+           count+= response.likes_count;
+           var id = response.service_pk;
+
+           $("#service"+id).html(count);
+
+       },
+       error: function(rs, e) {
+            alert(rs.responseText+ "error");
+       },
+    });
+ })
+</script>
   {% endblock js %}
     
 

@@ -24,6 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/',include('user.urls')),
     path('service/',include('service.urls')),
-    path('contract/',include('contract.urls')),
     path('', views.index.as_view(), name='index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
