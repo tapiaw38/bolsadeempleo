@@ -10,7 +10,7 @@
             <a class="" href="{{service.facebook_url}}">Facebook</a>
         </div>
         <a href="" class="mb-3 float-right">
-            <img src="{% static 'img/con.png' %}" alt="" width="40" height="40">
+            <img src="{% static 'img/con.png' %}" alt="" width="40" height="40" class="color-expand">
         </a>
     </div>
     {% if service.picture_logo %}
@@ -38,8 +38,8 @@
         </form>
         -->
 
-        <a type="button" class="like" name='{{service.id}}'><img src="{% static 'img/estrella.png' %}" alt="" width="35" height="35"class="color-expand"></a>
-        <span class="badge badge-pill mb-1 p-1 text-light d-inline mt-2" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
+        <a type="button" class="like" name='{{service.id}}'><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
+        <span class="badge badge-pill mb-2 p-2 text-light d-inline mt-0" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
     </div>
 </div>
 

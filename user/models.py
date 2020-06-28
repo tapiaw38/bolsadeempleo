@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Person(models.Model):
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=10, blank=True, null=True,verbose_name="Número de teléfono")
+    phone_number = models.CharField(max_length=10,default="", blank=True, null=True,verbose_name="Número de teléfono")
     direction = models.CharField(max_length=100)
     picture = models.ImageField(upload_to="user/pictures",blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
