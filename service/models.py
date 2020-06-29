@@ -40,6 +40,18 @@ class Like(models.Model):
         return str(self.service)
 
 
+class Message(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    person = models.ForeignKey(Person,on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(Person,on_delete=models.CASCADE,related_name='author')
+    
+
+    def __str__(self):
+        return 'mensaje de {}'.format(self.author)
+
 """
 class Post(models.Model):
     title = models.CharField(max_length=150)
