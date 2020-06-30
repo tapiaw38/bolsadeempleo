@@ -8,5 +8,5 @@ urlpatterns = [
     path('service/<int:pk>/', views.ServiceDetail.as_view(), name = 'service_detail'),
     path("search/<str:search>/", views.category_search , name="search_category"),
     path("like/", views.like_service, name="like"),
-    path("message/", views.CreateMessage.as_view(), name="message"),
+    path('message/', views.list_message, name = 'message_list'),
 ]

@@ -5,5 +5,3 @@ class PersonForm(forms.Form):
     direction = forms.CharField(max_length=100, required=True)
     picture = forms.ImageField()
 
-
-    

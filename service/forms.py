@@ -1,5 +1,5 @@
 from django import forms
-from service.models import Service, Message
+from service.models import Service
 
 
 class ServiceForm(forms.ModelForm):
@@ -42,17 +42,3 @@ class ServiceForm(forms.ModelForm):
             'category':forms.Select(choices=CATEGORY_CHOICES,attrs={'class': 'form-control'}),
         }
 
-
-class MessageForm(forms.ModelForm):
-
-    class Meta:
-
-        model = Message
-
-        fields = (
-            'user', 
-            'person', 
-            'title', 
-            'body', 
-            'author', 
-            )

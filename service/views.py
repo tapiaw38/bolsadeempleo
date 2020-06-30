@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from service.models import Service, Like, Message
-from service.forms import ServiceForm, MessageForm
+from service.forms import ServiceForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
@@ -76,20 +76,13 @@ def like_service(request):
 
     #return redirect('list')
 
-
-class CreateMessage(LoginRequiredMixin, CreateView):
-    template_name = 'service/list_service.html'
-    form_class = MessageForm
-    success_url = reverse_lazy('list')
-
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        context['author'] = self.request.user.person
-        return context
+def list_message(request):
+    user = request.user.username
+    messages = Message.objects.filter(user__username__icontains=user)
+    context = {'messages':messages}
+    return render(request, 'service/message.html',context)
 
 """
-
         context={'likes_count':service_obj.num_likes}
     return HttpResponse(json.dumps(context), content_type='list')
 

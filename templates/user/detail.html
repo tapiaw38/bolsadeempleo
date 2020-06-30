@@ -28,7 +28,7 @@
                         <span class="badge badge-pill badge-primary mr-2">12</span><img src="{% static 'img/corazon.png' %}" alt="" width="15" height="auto">
                     </div>
                     <div class="col-sm-4 mt-2">
-                        <a href=""><span class="badge badge-pill badge-primary mr-2">12</span> Comentarios</a>
+                        <a href="" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-pill badge-primary mr-2">12</span> Comentarios</a>
                     </div>
                 </div>
                 <div class="row mt-4 pb-4">
@@ -54,8 +54,10 @@
         </div>
     </div>
 
-
+{% include "user/new_message.html" %}
 {% endblock %}
+
+
 
 {% block footer%}
 {% endblock footer %}
