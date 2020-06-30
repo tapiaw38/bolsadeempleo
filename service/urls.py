@@ -9,4 +9,5 @@ urlpatterns = [
     path("search/<str:search>/", views.category_search , name="search_category"),
     path("like/", views.like_service, name="like"),
     path('message/', views.list_message, name = 'message_list'),
+    path('new_message/', views.new_message, name = 'new_message')
 ]

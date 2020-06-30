@@ -75,6 +75,23 @@ def like_service(request):
     return HttpResponse(json.dumps(context), content_type='application/json')
 
     #return redirect('list')
+def new_message(request):
+    user = request.user
+    person = request.user.person
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        author = request.POST.get('author')
+        
+        message = Message.objects.get_or_create(user=user, person=person, title=title, body=body, author=author)
+        
+
+        message.save()
+    
+    return reverse_lazy('list')
+
+
 
 def list_message(request):
     user = request.user.username

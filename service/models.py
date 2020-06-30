@@ -46,7 +46,7 @@ class Message(models.Model):
     title = models.CharField(max_length=150)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Person,on_delete=models.CASCADE,related_name='author')
+    author = models.ForeignKey(Person,on_delete=models.CASCADE, null=True, blank=True ,related_name='author')
     
 
     def __str__(self):

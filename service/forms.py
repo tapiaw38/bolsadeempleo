@@ -42,3 +42,16 @@ class ServiceForm(forms.ModelForm):
             'category':forms.Select(choices=CATEGORY_CHOICES,attrs={'class': 'form-control'}),
         }
 
+'''
+class MessageForm(forms.ModelsForm):
+    class Meta:
+        models = Message
+
+        fields= (
+            'user', 
+            'person',
+            'title', 
+            'body', 
+            'author', 
+        )
+'''

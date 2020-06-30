@@ -10,12 +10,10 @@
         </button>
       </div>
       <div class="modal-body">
-                       <form method="POST" action="">
+                       <form method="POST" action="{% url 'new_message' %}">
                     {% csrf_token %}
 
-                    <input type="hidden" name="author" value="{{ request.user.person.pk }}" />
-                    <input type="hidden" name="user" value="{{ user.person.pk }}" />
-                    <input type="hidden" name="person" value="{{ user.pk }}" />
+                    <input type="hidden" name="author" value="{{ user.person.id }}" />
 
                     {# Title field #}
                     <div class="form-group">
