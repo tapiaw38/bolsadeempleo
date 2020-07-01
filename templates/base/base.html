@@ -52,7 +52,34 @@
        },
     });
  })
+
+ $('.eliminar').click(function(){
+
+  if(confirm("¿Estás seguro de eliminar esté servicio?")){
+        $.ajax({
+        type: "POST",
+        url: "{% url 'delete' %}",
+        data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        dataType: "json",
+        success: function(response) {
+            alert('servicio eliminado de '+response.user + " "+ response.title);
+            var id = response.title;
+            $("#none"+id).addClass('d-none')
+
+        },
+        error: function(rs, e) {
+              alert(rs.responseText+ "error");
+        },
+        });
+    }
+    else{
+        return false;
+    }
+});
+
+
 </script>
+
   {% endblock js %}
     
 

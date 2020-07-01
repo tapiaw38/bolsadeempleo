@@ -6,8 +6,8 @@ urlpatterns = [
     path('lista/', views.ServiceList.as_view(), name='list'),
     path('new/', views.CreateService.as_view(), name = 'create'),
     path('service/<int:pk>/', views.ServiceDetail.as_view(), name = 'service_detail'),
+    #path('delete/<int:pk>/', views.DeleteService.as_view(), name = 'delete'),
     path("search/<str:search>/", views.category_search , name="search_category"),
     path("like/", views.like_service, name="like"),
-    path('message/', views.list_message, name = 'message_list'),
-    path('new_message/', views.new_message, name = 'new_message')
+    path("delete/", views.delete_service, name="delete"),
 ]

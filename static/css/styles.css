@@ -30,3 +30,9 @@
 footer{
     background-color: rgb(32, 30, 30);
 }
+
+
+
+#cont:hover .visible{
+    display: block;
+} 

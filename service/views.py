@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from service.models import Service, Like, Message
+from service.models import Service, Like
 from service.forms import ServiceForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy
 import json
 from django.http import HttpResponse
@@ -42,6 +42,13 @@ class CreateService(LoginRequiredMixin, CreateView):
         context['person'] = self.request.user.person
         return context
 
+class DeleteService(LoginRequiredMixin, DeleteView):
+    model = Service
+    template_name = 'service/service_delete.html'
+    context_object_name = 'service'
+    success_url = reverse_lazy('list') 
+
+
 @login_required
 def category_search(request, search):
     if search:
@@ -75,29 +82,16 @@ def like_service(request):
     return HttpResponse(json.dumps(context), content_type='application/json')
 
     #return redirect('list')
-def new_message(request):
-    user = request.user
-    person = request.user.person
-
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        body = request.POST.get('body')
-        author = request.POST.get('author')
-        
-        message = Message.objects.get_or_create(user=user, person=person, title=title, body=body, author=author)
-        
-
-        message.save()
-    
-    return reverse_lazy('list')
-
-
-
-def list_message(request):
+@login_required
+def delete_service(request):
     user = request.user.username
-    messages = Message.objects.filter(user__username__icontains=user)
-    context = {'messages':messages}
-    return render(request, 'service/message.html',context)
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id')
+        service_obj = Service.objects.get(id=service_id)
+        service_obj.delete()
+        context={'user':user, 'title':service_obj.title,}
+    return HttpResponse(json.dumps(context), content_type='application/json')
+
 
 """
         context={'likes_count':service_obj.num_likes}

@@ -37,7 +37,10 @@
     
                 <div class="form-group">
                     <label for="">Número de Telefono</label>
-                    <input type="text" class="form-control" name="phone_number" placeholder="3837690000" value="{{person.phone_number}}">
+                    <input type="text" class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" name="phone_number" placeholder="3837690000" value="{{person.phone_number}}">
+                    <div class="invalid-feedback">
+                        {% for error in form.phone_number.errors %}{{ error }}{% endfor %}
+                    </div>
                 </div>
     
     
