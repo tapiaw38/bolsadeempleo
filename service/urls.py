@@ -10,4 +10,5 @@ urlpatterns = [
     path("search/<str:search>/", views.category_search , name="search_category"),
     path("like/", views.like_service, name="like"),
     path("delete/", views.delete_service, name="delete"),
+    path('contact/', views.contact, name='contact'),
 ]

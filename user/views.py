@@ -13,6 +13,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 
 
+
 from service.models import Service
 # Create your views here.
 

@@ -1,4 +1,7 @@
 {% extends "base/base.html" %}
+{% block nav %}
+    {% include 'base/navbar.html' %}
+{% endblock nav %}
 
 {% load static %}
 
@@ -39,6 +42,7 @@
                   </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+                <p class="pt-2"><a href="{% url 'password_reset' %}">He olvidado mi contraseña</a></p>
                 <p class="mt-5 mb-3 text-muted text-center">&copy; Municipalidad de Tinogasta <script>document.write(new Date().getFullYear());</script></p>
               </form>
         </div>

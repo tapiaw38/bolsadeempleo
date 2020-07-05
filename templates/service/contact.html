@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container pt-4 pb-4">
+    <div class="row align-items-center ">
+        <div class="col-lg-4 offset-lg-4 target pt-4 mt4">
+            <form class="form-signin" method="POST" action="{%url 'contact'%}">
+            {% csrf_token %}
+                <div class="text-center mb-4">
+                  <h1 class="h3 mb-3 font-weight-normal">Envianos un mensaje</h1>
+                  <p><code>En breve nos contactaremos contigo.</code></p>
+                </div>
+                {% if messages %}
+                {% for message in messages%}
+                <div class="text-center">
+                    <p class="alert alert-success">{{message}}</p>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="form-label-group">
+                    <label for="inputEmail">Asunto</label>
+                    <input type="text" id="inputEmail" class="form-control" placeholder="Asunto" required autofocus name="asunto">
+                </div>
+              
+                <div class="form-label-group">
+                    <label for="inputText">Email</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus name="email">
+                </div>
+
+                <div class="iform-label-group">
+                    <label for="inputText">Mensaje</label>
+                    <textarea class="form-control" aria-label="With textarea" placeholder="Mensaje" name="msg"></textarea>
+                </div>
+            
+                <button class="btn btn-primary btn-block mt-2" type="submit">Enviar</button>
+                <p class="mt-5 mb-3 text-muted text-center">&copy; Municipalidad de Tinogasta <script>document.write(new Date().getFullYear());</script></p>
+              </form>
+        </div>
+    </div>
+</div>  
+{% endblock content %}
+
+{% block footer %}
+  
+{% endblock footer %}

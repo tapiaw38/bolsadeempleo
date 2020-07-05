@@ -1,8 +1,8 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg  navbar-dark bg-primary sticky-top">
     <div class="container">
-      <a href="{%url 'index'%}" class="navbar-brand mr-5"> MIS SERVICIOS
-        <img src="{% static 'img/contacto.png' %}" alt="" style="width: 50px; height: auto;"></a>
+      <a href="{%url 'index'%}" class="navbar-brand"><img class="mr-2" src="{% static 'img/contacto.png' %}" alt="" style="width: 60px; height: auto;">TRATO HECHO</a> 
+        
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -58,8 +58,8 @@
             </ul>
           </div>
         {% else %}
-          <a class="nav-item float-lg-right btn btn-outline-secondary mr-2" href="{%url 'sign_up'%}">Registrate</a>
-          <a class="nav-item float-lg-right btn btn-outline-secondary mr-2" href="{%url 'log_in'%}">Ingresar</a>
+          <a class="nav-item float-lg-right btn btn-outline-success mr-2" href="{%url 'sign_up'%}">Registrate</a>
+          <a class="nav-item float-lg-right btn btn-outline-success mr-2" href="{%url 'log_in'%}">Ingresar</a>
         {% endif %}
       </form>
       </div>

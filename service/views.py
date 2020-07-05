@@ -7,6 +7,9 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy
 import json
 from django.http import HttpResponse
+from django.core.mail import EmailMessage, send_mail
+from django.conf import settings
+from django.contrib import messages
 # Create your views here.
 
 '''
@@ -91,6 +94,21 @@ def delete_service(request):
         service_obj.delete()
         context={'user':user, 'title':service_obj.title,}
     return HttpResponse(json.dumps(context), content_type='application/json')
+
+
+
+def contact(request):
+    if request.method == 'POST':
+        subject = request.POST['asunto']
+        msg = request.POST['msg']+' '+request.POST['email']
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['tapiaw38@gmail.com']
+        send_mail(subject,msg,email_from,recipient_list)
+        messages.success(request, "Mensaje enviado correctamente")
+        return render(request,'service/contact.html')
+
+    return render(request,'service/contact.html')
+
 
 
 """
