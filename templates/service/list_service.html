@@ -8,7 +8,7 @@
 {% block content %}
     <div class="container mt-2 mb-2">
         <div class="row">
-            <div class=" d-none d-lg-block d-md-block target p-2" style="position: fixed; width: 18%; height: auto;">
+            <div class=" d-none d-lg-block d-md-none target p-2" style="position: fixed; width: 18%; height: auto;">
                 <div class="media">
                     <div class="media-body">
                         <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
@@ -21,7 +21,7 @@
                 </div>
                 <p class="mt-2 mb-2 text-muted text-center">&copy; Municipalidad de Tinogasta <script>document.write(new Date().getFullYear());</script></p>
             </div>
-            <div class="col-sm-12 d-lg-none d-md-none">
+            <div class="col-sm-12 d-lg-none d-md-block">
                 <div class="media pt-2 pb-2">
                     <div class="media-body">
                         <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
@@ -31,7 +31,7 @@
             {% for service in service %}
                 {% include 'service/service_card.html' %}
             {% endfor %}
-            <div class="col-sm-12 d-lg-none d-md-none">
+            <div class="col-sm-12 d-lg-none d-md-block">
                 <div class="media pt-2 pb-2">
                     <div class="media-body">
                         <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
