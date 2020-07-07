@@ -32,12 +32,14 @@
                         <p>Tel: <strong class="text-primary mr-2">{{user.person.phone_number}}</strong></p>
                     </div>
                     <div class="col-sm-4 mt-2">
-                        
+                        <a href="https://api.whatsapp.com/send?phone=+54{{user.person.phone_number}}&text=mensaje">Whatsapp<img class="ml-2" src="{% static 'img/whatsapp.png' %}" alt="" width="30" height="30"></a>
+                    </div>
+                    <div class="col-sm-4 mt-2">
                         {% if services %}
                         <p>Servicios <span class="badge badge-pill badge-primary mr-2">{{services.count}}</span></p>
+                        {% else %}
+                        <p>Servicios <span class="badge badge-pill badge-primary mr-2">0</span></p>
                         {% endif %}
-                            
-                        
                     </div>
                 </div>
                 <div class="row mt-4 pb-4">
