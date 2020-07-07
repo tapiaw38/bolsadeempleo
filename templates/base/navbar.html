@@ -37,14 +37,14 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'create' %}">Publicar</a>
           </li>
-          <img src="{% static 'img/anunciar.png' %}" alt="" width="35" height="35">
+          <img class="d-none d-md-block d-lg-block" src="{% static 'img/anunciar.png' %}" alt="" width="35" height="35">
         {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0">
         {% if user.is_authenticated %}
         <a href="{% url 'detail' request.user.username %}">
           {% if request.user.person.picture %}
-            <img src="{{request.user.person.picture.url}}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
+            <img src="{{request.user.person.picture.url}}" alt="imagen" class="rounded-circle mr-4 ml-4 d-none d-md-block d-lg-block" height="50px" width="50px">
           {% else %}
             <img src="{% static 'img/cuenta.png' %}" alt="imagen" class="rounded-circle mr-4 ml-4" height="50px" width="50px">
           {% endif %}
