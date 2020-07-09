@@ -52,7 +52,7 @@
           <div class="btn-group float-sm-right">
             <a href="{% url 'detail' request.user.username %}" class="btn btn-outline-secondary btn-sm">{{request.user.username}}</a>
             <a href="#" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu pl-3">
+            <ul class="dropdown-menu pl-3 bg-secondary">
               <li><a href="{% url 'detail' request.user.username %}">Mi perfil</a></li>
               <li><a href="{% url 'log_out'%}">Salir</a></li>
             </ul>
