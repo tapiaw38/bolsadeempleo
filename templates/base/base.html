@@ -33,6 +33,7 @@
 
     $(document).ready(function() {
       $(".load").hide();
+
     });
 
 
@@ -65,14 +66,17 @@
           url: "{% url 'delete' %}",
           data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
           dataType: "json",
-          beforeSend:function(){
+          beforeSend:function(response){
+            var id = response.service_pk;
             $(".load").show();
+            $("#none"+id).addClass("graysacale")
+            $("#none"+id).hide(1000);
             
           },
           success: function(response) {
               var id = response.service_pk;
               $("#none"+id).addClass("graysacale")
-              $("#none"+id).hide(800);
+              $("#none"+id).hide(1000);
 
           },
           error: function(rs, e) {
