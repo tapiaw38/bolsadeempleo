@@ -66,15 +66,14 @@
           url: "{% url 'delete' %}",
           data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
           dataType: "json",
-          beforeSend:function(response){
-            var id = response.service_pk;
+          beforeSend:function(){
             $(".load").show();
-            $("#none"+id).addClass("graysacale")
-            $("#none"+id).hide(1000);
+            
             
           },
           success: function(response) {
               var id = response.service_pk;
+              console.log(id)
               $("#none"+id).addClass("graysacale")
               $("#none"+id).hide(1000);
 

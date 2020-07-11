@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from django.contrib import messages
 # Create your views here.
-
+import time
 '''
 @login_required
 def service_list(request):
@@ -92,7 +92,9 @@ def delete_service(request):
         service_id = request.POST.get('service_id')
         service_obj = Service.objects.get(id=service_id)
         context={'user':user, 'service_pk':service_obj.id}
+        time.sleep(3)
         service_obj.delete()
+        
         
     return HttpResponse(json.dumps(context), content_type='application/json')
 
