@@ -14,7 +14,11 @@
             <img src="{% static 'img/facebook.png' %}" alt="" width="30" height="30" class="color-expand">
         </a>
         {% endif %}
-            
+                        <!--container loader-->
+                        <div class="col-12 load" id="load{{service.id}}" style="position: absolute;">
+                            <div class="loader" id="loader">Loading...</div>
+                        </div>
+                        <!-- end loader-->       
     </div>
     {% if service.picture_logo %}
     <a href="" data-toggle="modal" data-target="#{{service.user.username}}">

@@ -30,6 +30,13 @@
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <script>
+
+    $(document).ready(function() {
+      $(".load").hide()
+    });
+
+
+
     $('.like').click(function(){
     $.ajax({
        type: "POST",
@@ -52,26 +59,33 @@
  })
 
  $('.eliminar').click(function(){
-
   if(confirm("¿Estás seguro de eliminar esté servicio?")){
         $.ajax({
-        type: "POST",
-        url: "{% url 'delete' %}",
-        data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-        dataType: "json",
-        success: function(response) {
-            //alert('servicio eliminado de '+response.user + " "+ response.title);
+          type: "POST",
+          url: "{% url 'delete' %}",
+          data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+          dataType: "json",
+          beforeSend:function(response){
             var id = response.title;
-            $("#none"+id).hide(700);
+            $(".load").show()
+            
+          },
+          success: function(response) {
+              //alert('servicio eliminado de '+response.user + " "+ response.title);
+              var id = response.title;
+              $("#none"+id).hide(700);
 
-        },
-        error: function(rs, e) {
-              alert(rs.responseText+ "error");
-        },
-        });
-    }
-    else{
-        return false;
+          },
+          error: function(rs, e) {
+                alert(rs.responseText+ "error");
+          },
+        })//endajax
+        .always(function() {
+          $(".load").hide()
+        })
+    }//endif
+  else{
+    return false;
     }
 });
 
@@ -79,7 +93,6 @@
 </script>
 
   {% endblock js %}
-    
 
 </body>
 </html>
