@@ -32,7 +32,7 @@
   <script>
 
     $(document).ready(function() {
-      $(".load").hide()
+      $(".load").hide();
     });
 
 
@@ -65,15 +65,14 @@
           url: "{% url 'delete' %}",
           data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
           dataType: "json",
-          beforeSend:function(response){
-            var id = response.title;
-            $(".load").show()
+          beforeSend:function(){
+            $(".load").show();
             
           },
           success: function(response) {
-              //alert('servicio eliminado de '+response.user + " "+ response.title);
-              var id = response.title;
-              $("#none"+id).hide(700);
+              var id = response.service_pk;
+              $("#none"+id).addClass("graysacale")
+              $("#none"+id).hide(1500);
 
           },
           error: function(rs, e) {
@@ -81,8 +80,8 @@
           },
         })//endajax
         .always(function() {
-          $(".load").hide()
-        })
+          $(".load").hide();
+        });
     }//endif
   else{
     return false;

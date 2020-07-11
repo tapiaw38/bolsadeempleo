@@ -37,7 +37,15 @@ footer{
     display: block;
 } 
 
-/*CARGANDO*/
+/* escala de gris antes de eliminar*/
+.graysacale{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+
+
+/* animacion cargando */
 .loader {
     font-size: 20px;
     margin: 45% auto;
