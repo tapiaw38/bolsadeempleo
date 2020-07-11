@@ -91,8 +91,7 @@ def delete_service(request):
     if request.method == 'POST':
         service_id = request.POST.get('service_id')
         service_obj = Service.objects.get(id=service_id)
-        context={'user':user, 'service_pk':service_id}
-        
+        context={'user':user, 'service_pk':service_obj.id}
         service_obj.delete()
         
     return HttpResponse(json.dumps(context), content_type='application/json')
