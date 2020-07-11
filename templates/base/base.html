@@ -60,7 +60,7 @@
         data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
         dataType: "json",
         success: function(response) {
-            alert('servicio eliminado de '+response.user + " "+ response.title);
+            //alert('servicio eliminado de '+response.user + " "+ response.title);
             var id = response.title;
             $("#none"+id).hide(1000)
 
