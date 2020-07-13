@@ -22,6 +22,9 @@ def service_list(request):
     return HttpResponse(json.dumps(services), content_type='application/json')
 
 def list_serializer(service,request_user):
+    date = str(service.created)
+    created = datetime.fromisoformat(date[:-13]).strftime('%d %B %Y %H:%M')
+
     return {
 
         'id':service.id,
@@ -36,7 +39,7 @@ def list_serializer(service,request_user):
         'direction':service.direction,
         'facebook_url':service.facebook_url,
         'liked':str(service.num_likes),
-        'created':str(service.created),
+        'created':str(created),
         }
 
 
