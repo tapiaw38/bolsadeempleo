@@ -11,14 +11,35 @@ from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from django.contrib import messages
 # Create your views here.
-import time
-'''
+from datetime import datetime
+
 @login_required
 def service_list(request):
-    service = Service.objects.all().order_by('-created')
-    contexto = {'service': service}
-    return render (request, 'service/list_service.html', contexto)
-'''
+    request_user = request.user.username
+    services = Service.objects.all().order_by('-created')
+    services = [list_serializer(service,request_user) for service in services]
+
+    return HttpResponse(json.dumps(services), content_type='application/json')
+
+def list_serializer(service,request_user):
+    return {
+
+        'id':service.id,
+        'user':service.user.username,
+        'request_user':request_user,
+        'picture':service.person.picture.url,
+        'name':service.user.username,
+        'title':service.title,
+        'picture_logo':service.picture_logo.url,
+        'category':service.category,
+        'description':service.description,
+        'direction':service.direction,
+        'facebook_url':service.facebook_url,
+        'liked':str(service.num_likes),
+        'created':str(service.created),
+        }
+
+
 class ServiceList(LoginRequiredMixin, ListView):
     template_name = 'service/list_service.html'
     model = Service
@@ -92,7 +113,6 @@ def delete_service(request):
         service_id = request.POST.get('service_id')
         service_obj = Service.objects.get(id=service_id)
         context={'user':user, 'service_pk':service_obj.id}
-        time.sleep(3)
         service_obj.delete()
         
         

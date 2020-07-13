@@ -14,11 +14,11 @@
             <img src="{% static 'img/facebook.png' %}" alt="" width="30" height="30" class="color-expand">
         </a>
         {% endif %}
-                        <!--container loader-->
+                        <!--container loader
                         <div class="col-12 load" id="load{{service.id}}" style="position: absolute;">
                             <div class="loader" id="loader">Loading...</div>
                         </div>
-                        <!-- end loader-->       
+                        -->       
     </div>
     {% if service.picture_logo %}
     <a href="" data-toggle="modal" data-target="#{{service.user.username}}">
@@ -49,7 +49,7 @@
         </form>
         -->
 
-        <a type="button" class="like" name='{{service.id}}'><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
+        <a type="button" class="like" name="{{service.id}}"><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
         <span class="badge badge-pill mb-2 p-2 text-light d-inline mt-0" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
         {% if service.user == request.user %}
         <a type="button" class="mb-3 float-right ml-3 eliminar" name='{{service.id}}'>
