@@ -96,7 +96,7 @@
           html +='<h6 class="ml-0 mt-1">'+element.title+'</h6></div>',
           html += facebook,
           html +='</div>',
-          html +='<a href="" data-toggle="modal" data-target="#'+element.user+'">',
+          html +='<a href="" data-toggle="modal" data-target="#modal'+element.id+'">',
           html +='<img class="img-fluid mt-3 border rounded" src="'+element.picture_logo+'" alt="'+element.title+'"><span class="badge badge-primary">'+element.category+'</span></a>',
           html +='<p class="mt-1 mb-0 text-primary">'+element.description+'</p>',
           html +=' <form class="form-inline">',
@@ -116,7 +116,7 @@
           
           $("#list_json").append(html);
           
-          modal = '<div class="modal fade" id="'+element.user+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+          modal = '<div class="modal fade" id="modal'+element.id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
           modal+= '<div class="modal-dialog modal-lg" role="document">';
           modal+= ' <div class="modal-content">';
           modal+= '<div class="modal-header">';

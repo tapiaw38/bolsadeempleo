@@ -21,7 +21,7 @@
                         -->       
     </div>
     {% if service.picture_logo %}
-    <a href="" data-toggle="modal" data-target="#{{service.user.username}}">
+    <a href="" data-toggle="modal" data-target="#modal{{service.id}}">
         <img class="img-fluid mt-3 border rounded" src="{{ service.picture_logo.url }}" alt="{{ service.title }}"><span class="badge badge-primary">{{service.category}}</span>
     </a>
     
