@@ -60,3 +60,65 @@
 </div>
 {% include 'service/image_modal.html' %}
 
+
+{% block js %}
+<script>
+        //liked ajax
+        $('.like').click(function(){
+         console.log("dentro de funcion like");
+         $.ajax({
+            type: "POST",
+            url: "{% url 'like' %}",
+            data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            dataType: "json",
+            success: function(response) {
+                //alert(' likes count is now ' + response.likes_count);
+                var count = "";
+                count+= response.likes_count;
+                var id = response.service_pk;
+                
+     
+                $("#service"+id).html(count);
+     
+            },
+             error: function(rs, e) {
+                 alert(rs.responseText+ "error");
+               },
+             });
+           })
+       //delete service ajax
+      $('.eliminar').click(function(){
+       if(confirm("¿Estás seguro de eliminar esté servicio?")){
+             $.ajax({
+               type: "POST",
+               url: "{% url 'delete' %}",
+               data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               beforeSend:function(){
+                 $(".load").show();
+                 
+                 
+               },
+               success: function(response) {
+                   var id = response.service_pk;
+                   $("#none"+id).addClass("graysacale")
+                   $("#none"+id).hide(1000);
+     
+               },
+               error: function(rs, e) {
+                     alert(rs.responseText+ "error");
+               },
+             })//endajax
+             .always(function() {
+               $(".load").hide();
+             });
+         }//endif
+       else{
+         return false;
+         }
+     });
+</script>
+    
+{% endblock js %}
+
+    
