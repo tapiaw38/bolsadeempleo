@@ -13,6 +13,7 @@ from django.contrib import messages
 # Create your views here.
 from datetime import datetime
 
+"""
 @login_required
 def service_list(request):
     request_user = request.user.username
@@ -42,7 +43,7 @@ def list_serializer(service,request_user):
         'created':str(created),
         }
 
-
+"""
 class ServiceList(LoginRequiredMixin, ListView):
     template_name = 'service/list_service.html'
     model = Service
