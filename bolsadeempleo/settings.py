@@ -25,7 +25,7 @@ SECRET_KEY = 'a9pi)sxmxdi^d1m2=ngzx$+&1@e!d2w0qpcgh+1h)i-it_4h6='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1","tapiaw38.pythonanywhere.com"]
 
 
 # Application definition
@@ -137,7 +137,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'desarrollosocialtinogasta@gmail.com'
-EMAIL_HOST_PASSWORD = 'Desarrollo2020'
+EMAIL_HOST_PASSWORD = 'jvniebpgsvssoodw'
 
 #Config image file 
 CONTENT_TYPES = ['image','video']
