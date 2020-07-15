@@ -94,7 +94,7 @@
       });
 
       $(document).ready(function(){
-        $("#sound_wsp").hover(function(){
+        $("#sound_wsp").click(function(){
           console.log("funcion wsp");
             var audio_msj = "{% static 'sound/tono-mensaje.mp3' %}";
             var sonido = new Audio(audio_msj);
