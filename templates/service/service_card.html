@@ -48,7 +48,6 @@
             <span class="badge badge-pill mb-1 p-1 text-light d-inline mt-2" style="background-color: rgb(255, 192, 31);">{{service.liked.all.count}} Estrellas</span>
         </form>
         -->
-
         <a type="button" class="like" name="{{service.id}}"><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
         <span class="badge badge-pill mb-2 p-2 text-light d-inline mt-0" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
         {% if service.user == request.user %}

@@ -43,7 +43,23 @@ footer{
     filter: grayscale(100%);
 }
 
-
+#wsp {
+  animation: palpitar 2s linear infinite alternate;
+  will-change: transform;
+}
+#wsp:before{
+  top: 0;
+  left: -50%;
+}
+#wsp:after{
+  top: -50%;
+  left: 0;
+}
+@keyframes palpitar{
+  0%{transform: rotate(45deg) scale(1);}
+  50%{transform: rotate(45deg) scale(1.5);}
+  100%{transform: rotate(45deg) scale(1);}
+}
 
 /* animacion cargando */
 .loader {

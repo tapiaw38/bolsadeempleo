@@ -40,6 +40,11 @@
         data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
         dataType: "json",
         cache:false,
+        beforeSend:function(){
+              var audio_star = "{% static 'sound/sound_coin.mp3' %}";
+              var sonido = new Audio(audio_star);
+              sonido.play();
+            },
         success: function(response) {
            //alert(' likes count is now ' + response.likes_count);
            var count = "";
@@ -86,6 +91,15 @@
         };
         //$("#list_json").text("");
         //ListService();
+      });
+
+      $(document).ready(function(){
+        $("#sound_wsp").hover(function(){
+          console.log("funcion wsp");
+            var audio_msj = "{% static 'sound/tono-mensaje.mp3' %}";
+            var sonido = new Audio(audio_msj);
+            sonido.play();
+        });
       });
   </script>
 </body>
