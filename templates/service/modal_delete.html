@@ -1,0 +1,20 @@
+{% load static %}
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h2>¿Estas Seguro de eliminar este servicio?</h2>
+          <form id="form-delete">
+            <input type="button" class="btn btn-warning" value="Sí, eliminar"/>
+            <input type="button" class="btn btn-primary" value="Cancelar"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

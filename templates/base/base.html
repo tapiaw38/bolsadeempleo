@@ -65,30 +65,41 @@
       $('body').on('click','.eliminar',function(event){
         event.preventDefault();
         //$(".load").show();
-        if(confirm("¿Estás seguro de eliminar esté servicio?")){
-          $.ajax({
-            type: "POST",
-            url: "{% url 'delete' %}",
-            data: {'service_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-            dataType: "json",
-            beforeSend:function(){
-              console.log("method before");
-            },
-            success: function(response) {
-              //$(".load").show();
-              console.log("method success");
-              var id = response.service_pk;
-              $(".none"+id).addClass("graysacale");
-              $(".none"+id).hide(1000);
-            }//end success
+        $("#modal-delete").modal("show");
+              $("#form-delete").on("click","input", function(){
+                res = false;
+                valor = $(this).val();
+                if (valor == "Sí, eliminar") {
+                  console.log(valor);
+                  $("#modal-delete").modal("hide");
+                  function ajax_delete(){
+                    $.ajax({
+                      type: "POST",
+                      url: "{% url 'delete' %}",
+                      data: {'service_id': $(".eliminar").attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                      dataType: "json",
+                      beforeSend:function(){
+                        //before
+                      },
+                      success: function(response) {
+                        //$(".load").show();
+                        console.log("method success");
+                        var id = response.service_pk;
+                        $(".none"+id).addClass("graysacale");
+                        $(".none"+id).hide(1000);
+                      }//end success
 
-          }).always(function(){
-           
-          })
-        }//endif
-        else{
-          return false;
-        };
+                        }).always(function(){
+                    
+                      })
+                  };
+                  ajax_delete();
+
+                }else{
+                  $("#modal-delete").modal("hide");
+                };
+              });
+         
         //$("#list_json").text("");
         //ListService();
       });
