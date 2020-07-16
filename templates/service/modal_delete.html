@@ -3,16 +3,16 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Eliminar</h5>
+          <h5 class="modal-title">Eliminar <strong class="text-primary">{{service.title}}</strong> de <strong class="text-primary">{{service.person.user}}</strong></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <h2>¿Estas Seguro de eliminar este servicio?</h2>
-          <form id="form-delete">
-            <input type="button" class="btn btn-warning" value="Sí, eliminar"/>
-            <input type="button" class="btn btn-primary" value="Cancelar"/>
+            <h2>¿Estás seguro de eliminar este servicio?</h2>
+          <form class="pt-2 pb-2" id="form-delete">
+            <input type="button" class="btn btn-warning mr-2" value="Sí, eliminar"/>
+            <input type="button" class="btn btn-primary mr-2" value="Cancelar"/>
           </form>
         </div>
       </div>
