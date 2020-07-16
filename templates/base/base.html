@@ -62,9 +62,10 @@
 
       });
       //delete
-      $('body').on('click','.eliminar',function(event){
-        event.preventDefault();
+      $('body').on('click','.eliminar',function(){
+        //event.preventDefault();
         //$(".load").show();
+        id = $(this);
         $("#modal-delete").modal("show");
               $("#form-delete").on("click","input", function(){
                 res = false;
@@ -76,7 +77,7 @@
                     $.ajax({
                       type: "POST",
                       url: "{% url 'delete' %}",
-                      data: {'service_id': $(".eliminar").attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                      data: {'service_id': id.attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                       dataType: "json",
                       beforeSend:function(){
                         //before
