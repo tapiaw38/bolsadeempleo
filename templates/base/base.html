@@ -64,7 +64,6 @@
       //delete
       $('body').on('click','.eliminar',function(){
         //event.preventDefault();
-        //$(".load").show();
         id = $(this);
         $("#modal-delete").modal("show");
               $("#form-delete").on("click","input", function(){
@@ -80,11 +79,12 @@
                       data: {'service_id': id.attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                       dataType: "json",
                       beforeSend:function(){
-                        //before
+
+                        return true;
                       },
                       success: function(response) {
-                        //$(".load").show();
-                        console.log("method success");
+
+                        //console.log("method success");
                         var id = response.service_pk;
                         $(".none"+id).addClass("graysacale");
                         $(".none"+id).hide(1000);
