@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% block head %}
-<title>New service</title>
+<title>Nuevo servicio</title>
 {% endblock %}
   
 
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-lg-6 col-md-6 col-sm-12 pt-3 pb-3 mt-5 target">
-                <h4 class="mb-4">Publica tú servicio</h4>
+                <h4 class="mb-4">Publica tu servicio</h4>
 
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -23,7 +23,7 @@
                             class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                             type="text"
                             name="title"
-                            placeholder="Titulo del servicio"
+                            placeholder="Título del servicio"
                         >
                         <div class="invalid-feedback">
                             {% for error in form.title.errors %}{{ error }}{% endfor %}
@@ -41,7 +41,7 @@
                             class="form-control {% if form.description.errors %}is-invalid{% endif %}"
                             type="text"
                             name="description"
-                            placeholder="Describe tú servicio"
+                            placeholder="Describe tu servicio"
                         >
                         <div class="invalid-feedback">
                             {% for error in form.description.errors %}{{ error }}{% endfor %}
@@ -81,7 +81,7 @@
                             class="form-control {% if form.picture_logo.errors %}is-invalid{% endif %}"
                             type="file"
                             name="picture_logo"
-                            placeholder="photo"
+                            placeholder="Foto"
                         >
                         <div class="invalid-feedback">
                             {% for error in form.picture_logo.errors %}{{ error }}{% endfor %}
