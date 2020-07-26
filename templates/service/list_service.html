@@ -12,23 +12,28 @@
 {% block content %}
     <div class="container mt-2 mb-2">
         <div class="row">
-            <div class=" d-none d-lg-block d-md-none target p-2" style="position: fixed; width: 20%; height: auto;">
+            <div class=" d-none d-lg-block d-md-none target p-2" style="position: fixed; width: 19%; height: auto;">
                 <div class="media">
                     <div class="media-body">
-                        <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
+                        {% include 'advertising/max_pub.html' %}
                     </div>
                 </div>
-                <div class="media pt-4 text-center">
+                <div class="media pt-4 pb-2">
                     <div class="media-body">
-                        <img src="{% static 'img/publicidad.png' %}" alt="" width="80%" height="auto">
+                        <div class="col text-center">
+                            {% include 'advertising/min_pub.html' %}
+                        </div>
                     </div>
                 </div>
+                <form class="form-block text-center" action="">
+                    <a class="btn btn-outline-primary m-2"  href="{% url 'contact' %}">Tu Publicidad en TRATO HECHO</a>
+                </form>
                 <p class="mt-2 mb-2 text-muted text-center">&copy; Municipalidad de Tinogasta <script>document.write(new Date().getFullYear());</script></p>
             </div>
             <div class="col-sm-12 d-lg-none d-md-block">
                 <div class="media pt-2 pb-2">
                     <div class="media-body">
-                        <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
+                        {% include 'advertising/max_pub_2.html' %}
                     </div>
                 </div>
             </div>
@@ -38,9 +43,12 @@
             <div class="col-sm-12 d-lg-none d-md-block">
                 <div class="media pt-2 pb-2">
                     <div class="media-body">
-                        <img src="{% static 'img/publicidad.png' %}" alt="" width="100%" height="auto">
+                        {% include 'advertising/min_pub_2.html' %}
                     </div>
                 </div>
+                <form class="form-block text-center" action="">
+                    <a class="btn btn-outline-primary m-2"  href="{% url 'contact' %}">Tu Publicidad en TRATO HECHO</a>
+                </form>
             </div>
         </div>
     </div>

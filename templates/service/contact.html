@@ -10,8 +10,9 @@
         <div class="col-lg-4 offset-lg-4 target pt-4 mt4">
             <form class="form-signin" method="POST" action="{%url 'contact'%}">
             {% csrf_token %}
-                <div class="text-center mb-4">
+                <div class="text-center mb-2">
                   <h1 class="h3 mb-3 font-weight-normal">Envianos un mensaje</h1>
+                  <p class="text-primary">En breve nos pondremos en contacto</p>
                 </div>
                 {% if messages %}
                 {% for message in messages%}
