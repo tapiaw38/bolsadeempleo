@@ -15,28 +15,6 @@ class Person(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        imageTemproary = Image.open(self.picture)
-        imageTemproary = imageTemproary.convert('RGB')
-        outputIoStream = BytesIO()
-
-        w, h = imageTemproary.size
-
-        if w > 2000 and h > 1400:
-            w = int(w/3)
-            h = int(h/3)
-        elif w > 1000 and h > 750:
-            w = int(w/2)
-            h = int(h/2)
-
-
-
-        imageTemproaryResized = imageTemproary.resize((w,h)) 
-
-        imageTemproaryResized.save(outputIoStream , format='JPEG', quality=150)
-        outputIoStream.seek(0)
-        self.picture = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" %self.picture.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
-        super(Person, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username
