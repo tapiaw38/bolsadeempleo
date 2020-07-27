@@ -28,7 +28,7 @@ class ServiceForm(forms.ModelForm):
             ('Hogar y Jardin','Hogar y Jardin'),
             ('Industria y Agricultura','Industria y Agricultura'),
             ('Medios de Comunicación','Medios de Comunicación'),
-            ('Servicios Profecionales','Servicios Profecionales'),
+            ('Servicios Profesionales','Servicios Profesionales'),
             ('Ropa y Accesorios','Ropa y Accesorios'),
             ('Salud y Medicina','Salud y Medicina'),
             ('Servicios Legales y Financieros','Servicios Legales y Financieros'),
