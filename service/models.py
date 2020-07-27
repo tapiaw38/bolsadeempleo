@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from user.models import Person
+# Import image
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 # Create your models here.
 
 class Service(models.Model):
@@ -18,8 +23,27 @@ class Service(models.Model):
     liked = models.ManyToManyField(Person, default=None, blank=True, related_name='liked')
     created_like = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        imageTemproary = Image.open(self.picture_logo)
+        imageTemproary = imageTemproary.convert('RGB')
+        outputIoStream = BytesIO()
+
+        w, h = imageTemproary.size
+        if w > 1000 and h > 1000:
+            w = int(w/2)
+            h = int(h/2)
+
+        imageTemproaryResized = imageTemproary.resize((w,h)) 
+
+        imageTemproaryResized.save(outputIoStream , format='JPEG', quality=150)
+        outputIoStream.seek(0)
+        self.picture_logo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" %self.picture_logo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        super(Service, self).save(*args, **kwargs)
+
     def __str__(self):
         return '@{}, servicio: {}'.format(self.person.user.username, self.title)
+
+
 
     @property
     def num_likes(self):
