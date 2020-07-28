@@ -34,6 +34,7 @@ class ServiceForm(forms.ModelForm):
             ('Servicios Legales y Financieros','Servicios Legales y Financieros'),
             ('Viajes y Trasportes','Viajes y Trasportes'),
             ('Gastronomia','Gastronomia'),
+            ('Productos Regionales y Artesanias','Productos Regionales y Artesanias'),
         ]
 
 
