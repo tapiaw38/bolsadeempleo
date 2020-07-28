@@ -10,26 +10,17 @@
 
 
 {% block content %}
-
     <div class="container mt-5 mb-5">
-        
-        {% if service %}
-        <div class="alert alert-dismissible alert-success col-lg-4 offset-lg-4 col-sm-12">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Orden segun calificación por estrellas</strong>.
-        </div>
-        {% endif %}
-            
         <div class="row">
+            
             {% if service %}
                 {% for service in service %}
                     {% include 'service/service_card.html' %}
                 {% endfor %}
-
             {% else %}
             <div class="alert alert-dismissible alert-success col-lg-6">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Ups! </strong>Todavia no hay publicaciones en esta categoria. <a href="{% url 'list' %}"><h6 class="text-light">Volver al listado!</h6></a>
+                <strong>Ups! </strong>Todavia no hay publicaciones en esta categoria.
               </div>
             {% endif %}
                 
