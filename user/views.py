@@ -11,15 +11,16 @@ from django.db.utils import IntegrityError
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
-
-
-
+#decorador de redireccion home
 from service.models import Service
 # Create your views here.
 
-
 class index(TemplateView):
     template_name = 'user/index.html'
+    def dispatch(self, *args, **kwargs): 
+         if self.request.user.is_authenticated: 
+             return redirect('list') 
+         return super().dispatch(*args, **kwargs) 
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
