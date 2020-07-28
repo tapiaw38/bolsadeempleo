@@ -80,7 +80,8 @@ class DeleteService(LoginRequiredMixin, DeleteView):
 @login_required
 def category_search(request, search):
     if search:
-        service = Service.objects.filter(category__contains=search).order_by("-created")
+        service = Service.objects.filter(category__contains=search).order_by("-liked")
+        messages.success(request, "Orden de servicios segun estrellas")
     else:
         service = Service.objects.all()
     context = {'service':service}
