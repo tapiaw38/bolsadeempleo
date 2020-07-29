@@ -30,10 +30,10 @@ class Service(models.Model):
 
         w, h = imageTemproary.size
 
-        if w > 2000 and h > 1400:
+        if w > 1400 and h > 1400:
             w = int(w/3)
             h = int(h/3)
-        elif w > 1000 and h > 750:
+        elif w > 600 and h > 600:
             w = int(w/2)
             h = int(h/2)
 

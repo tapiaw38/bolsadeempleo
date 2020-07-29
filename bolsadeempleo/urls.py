@@ -21,7 +21,9 @@ from user import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('secret/', admin.site.urls),
     path('user/',include('user.urls')),
     path('service/',include('service.urls')),
     path('', views.index.as_view(), name='index'),
