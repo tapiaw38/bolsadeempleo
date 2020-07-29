@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     # Apps Local.
     'user',
     'service',
-    #HoneyPot
-    'admin_honeypot',
 ]
 
 MIDDLEWARE = [

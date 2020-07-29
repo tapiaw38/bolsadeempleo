@@ -3,5 +3,5 @@ __pycache__
 .vscode/
 env/
 media/
-db.sqlite3
 bolsadeempleo/settings.py
+db.sqlite3
