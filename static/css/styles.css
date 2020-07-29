@@ -74,7 +74,9 @@ footer{
   right: 20px;
 }
 
-
+.img-aparece {
+  display: none;
+}
 
 /* animacion cargando */
 .loader {
