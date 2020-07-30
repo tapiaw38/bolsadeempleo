@@ -20,8 +20,10 @@
         <img class="d-none d-md-block d-lg-block" src="{% static 'img/anunciar.png' %}" alt="" width="35" height="35">
         {% endif %}
           
-
         {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'list' %}">Publicaciones</a>
+          </li>
           <li class="nav dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categorias
