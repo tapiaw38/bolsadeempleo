@@ -48,7 +48,7 @@ class ServiceList(LoginRequiredMixin, ListView):
     template_name = 'service/list_service.html'
     model = Service
     ordering = ('-created')
-    paginate_by = 10
+    paginate_by = 20
     context_object_name = 'service'
 
 class ServiceDetail(LoginRequiredMixin, DetailView):
