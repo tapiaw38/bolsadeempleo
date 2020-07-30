@@ -44,7 +44,7 @@ def list_serializer(service,request_user):
         }
 
 
-class ServiceList(LoginRequiredMixin, ListView):
+class ServiceList(ListView):
     template_name = 'service/list_service.html'
     model = Service
     queryset = Service.objects.all().order_by("-created")[:60]

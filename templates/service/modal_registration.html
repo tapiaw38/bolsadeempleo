@@ -1,0 +1,19 @@
+{% load static %}
+<div class="modal fade" id="modal-registration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Atención!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h2>¡Debes registrarte para publicar, calificar o ver el perfil y datos de los usuarios!</h2>
+          <form class="pt-2 pb-2">
+            <a href="{%url 'sign_up'%}" class="btn btn-lg btn-success">Registrate</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
