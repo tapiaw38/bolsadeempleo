@@ -47,9 +47,17 @@ def list_serializer(service,request_user):
 class ServiceList(LoginRequiredMixin, ListView):
     template_name = 'service/list_service.html'
     model = Service
-    ordering = ('-created')
+    queryset = Service.objects.all().order_by("-created")[:60]
+    #ordering = ('-created')
     paginate_by = 20
     context_object_name = 'service'
+
+    """
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context['service']=Service.objects.all().order_by("-created")[:5]
+        return context
+    """
 
 class ServiceDetail(LoginRequiredMixin, DetailView):
     template_name = 'service/detail.html'
