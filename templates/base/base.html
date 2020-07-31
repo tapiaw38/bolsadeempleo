@@ -116,8 +116,13 @@
 
       $(document).ready(function() {
         $(".img-aparece").fadeIn(2000);
-      }); 
+      });
 
+      $('body').on('click', '.data-user',function(event){
+        valor_data = "publicar";
+        valor_data = $(this).attr("name");
+        $("#data-registration").html("¡Debes registrarte para "+valor_data+"!");
+      });
   </script>
 </body>
 </html>
