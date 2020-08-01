@@ -13,7 +13,7 @@
 
 {% block content %}
 
-<div class="container pt-5">
+<div class="container pt-2">
     <div class="row justify-content-md-center">
         <div class="col-lg-6 col-sm-10 m-2 pt-4 target">
             <form id="update-person" method="POST" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
                     <p class="alert alert-danger">{{form.errors}}</p>
                 {% endif %}
                     
-                <div class="media pt-4">
+                <div class="media pt-2">
                     
                     <div class="media-body text-center">
                         <h4 class="mb-4">@{{user.username}} | {{user.get_full_name}}</h4>
