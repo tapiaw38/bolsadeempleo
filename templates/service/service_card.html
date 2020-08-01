@@ -6,7 +6,7 @@
             <img class="mr-3 rounded-circle" src="{{ service.person.picture.url }}" alt="@{{ service.user.name }}" width="50" height="50">
         </a>
         {% else %}
-        <a href="" data-toggle="modal" data-target="#modal-registration">
+        <a href="" class="data-user" name="ver el perfil de los usuarios"  data-toggle="modal" data-target="#modal-registration">
             <img class="mr-3 rounded-circle" src="{{ service.person.picture.url }}" alt="@{{ service.user.name }}" width="50" height="50">
         </a>
         {% endif %}
@@ -16,7 +16,7 @@
                 <h5 class="mt-0">@{{service.user.username}}</h5>
             </a>
             {% else %}
-            <a href=""  data-toggle="modal" data-target="#modal-registration">
+            <a href="" class="data-user" name="ver el perfil de los usuarios"  data-toggle="modal" data-target="#modal-registration">
                 <h5 class="mt-0">@{{service.user.username}}</h5>
             </a>
             {% endif %}
@@ -67,7 +67,7 @@
         {%if request.user.is_authenticated %}
         <a type="button" class="like" name="{{service.id}}"><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
         {% else %}
-        <a type="button"  data-toggle="modal" data-target="#modal-registration"><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
+        <a type="button" class="data-user" name="calificar un usuario" data-toggle="modal" data-target="#modal-registration"><img src="{% static 'img/estrella.png' %}" alt="" width="30" height="30"class="color-expand mb-1 mr-2"></a>
         {% endif%}
         <span class="badge badge-pill mb-2 p-2 text-light d-inline mt-0" style="background-color: rgb(255, 192, 31);"><strong id ='service{{service.id}}'>{{service.liked.all.count}}</strong> Estrellas</span>
         
