@@ -16,7 +16,7 @@
 <div class="container pt-5">
     <div class="row justify-content-md-center">
         <div class="col-lg-6 col-sm-10 m-2 pt-4 target">
-            <form action="{% url 'update_person' %}" method="POST" enctype="multipart/form-data">
+            <form id="update-person" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 {% if form.errors  %}
@@ -25,14 +25,11 @@
                     
                 <div class="media pt-4">
                     
-                {% if person.picture %}
-                    <img src="{{person.picture.url}}" alt="" class="rounded-circle" height="50px" width="50px">
-                {% else %}
-                    <img src="{% static 'img/cuenta.png' %}" alt="" class="rounded-circle" height="50px" width="50px">
-                {% endif %}
-                    <div class="media-body">
-                        <h5 class="ml-4">@{{user.username}} | {{user.get_full_name}}</h5>
-                        <p class="ml-4"><input type="file" name="picture" required="false"></p>
+                    <div class="media-body text-center">
+                        <h4 class="mb-4">@{{user.username}} | {{user.get_full_name}}</h4>
+                        <canvas id="canvas" width="200" height="200"></canvas>
+                        <label class="btn btn-success" for="archivo" id="archivoFile">Seleccionar imagen</label>
+                        <input onchange="obtenerImagen()" type="file" id="archivo" name="picture">
                     </div>
                 </div>
     
@@ -60,7 +57,23 @@
 
 {% endblock %}
 
+<script>
 
+$("#update-person").on("submit", function(event){
+    event.preventDefault();
+
+    $.ajax({
+        type: "POST",
+        url: "{% url 'update_person' %}",
+        data: $("#update-person").serialoze(),
+        dataType: "json",
+        cache:false,
+        success: function(response) {
+
+        },
+    });
+});
+</script>
 
 
 {% block footer%}
