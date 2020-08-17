@@ -71,42 +71,6 @@ function dibujarImagenes(){
     context.drawImage(imagen, px, py, sx, sy);
     //****************************************************** */
 
-    //Mover imagen:****************************************************
-
-    /************************************************************* */
-
-    window.mainLoop = setInterval(()=>{
-        
-        if(presionando == true && moviendo == true)
-        {
-            //Obtenemos la posicion actual del mouse el rpimer frame
-            if(contador == 0)
-            {
-                amx = px;
-                amy = py;
-            }
-        
-            if(contador > 1)
-            {
-                //Calculamos la posicion delta del mouse y se lo agregamos a la posicion de la imagen
-                pdx = mx - amx;
-                pdy = my - amy;
-                px += pdx;
-                py += pdy;
-
-                //Limpiamos el canvas y dibujamos la imagen con la nueva posicion
-                context.fillStyle = 'darkgray';
-                context.fillRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(imagen, px, py, sx, sy);
-                
-            }
-            amx = mx;
-            amy = my;
-            contador++;
-        }
-    }, 1000/60)//60 = 60FPS
-    /************************************************************** */
-
     //Resizar imagen
     var porcentajeResizado = 0.1;//Se usa para scalar la imagen sin perder el aspect ratio
     canvas.onmousewheel = (event)=>{
