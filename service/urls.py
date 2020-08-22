@@ -4,6 +4,7 @@ from service import views
 
 urlpatterns = [
     path('lista/', views.ServiceList.as_view(), name='list'),
+    path('list_index/', views.service_index, name='list_index'),
     path('list_json/', views.service_list, name='list_json'),
     path('new/', views.CreateService.as_view(), name = 'create'),
     path('service/<int:pk>/', views.ServiceDetail.as_view(), name = 'service_detail'),

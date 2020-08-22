@@ -25,12 +25,11 @@
   {% endblock %}
 
   {% include 'service/modal_registration.html' %}
-  {% block js %}
-  {% endblock js %}
+
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/canvas.js' %}"></script>
+
   <script>
       //liked
       $('body').on('click', '.like',function(event){
@@ -132,5 +131,9 @@
 
 
   </script>
+  
+  {% block js %}
+  {% endblock js %}
+    
 </body>
 </html>

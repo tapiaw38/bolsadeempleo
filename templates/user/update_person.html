@@ -16,7 +16,7 @@
 <div class="container pt-2">
     <div class="row justify-content-md-center">
         <div class="col-lg-6 col-sm-10 m-2 pt-4 target">
-            <form id="update-person" method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 {% if form.errors  %}
@@ -57,24 +57,11 @@
 
 {% endblock %}
 
-<script>
-
-$("#update-person").on("submit", function(event){
-    event.preventDefault();
-
-    $.ajax({
-        type: "POST",
-        url: "{% url 'update_person' %}",
-        data: $("#update-person").serialoze(),
-        dataType: "json",
-        cache:false,
-        success: function(response) {
-
-        },
-    });
-});
-</script>
-
-
 {% block footer%}
 {% endblock %}
+
+
+{% block js %}
+<script src="{% static 'js/canvas.js' %}"></script>
+{% endblock js %}
+    

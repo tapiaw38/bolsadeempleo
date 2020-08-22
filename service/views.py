@@ -43,6 +43,34 @@ def list_serializer(service,request_user):
         'created':str(created),
         }
 
+def service_index(request):
+    request_user = request.user.username
+    services = Service.objects.all().order_by("-created")[:4]
+    services = [list_serializer2(service,request_user) for service in services]
+
+    return HttpResponse(json.dumps(services), content_type='application/json')
+
+def list_serializer2(service,request_user):
+    date = str(service.created)
+    created = datetime.fromisoformat(date[:-13]).strftime('%d %B %Y %H:%M')
+
+    return {
+
+        'id':service.id,
+        'user':service.user.username,
+        'request_user':request_user,
+        'picture':service.person.picture.url,
+        'name':service.user.username,
+        'title':service.title,
+        'picture_logo':service.picture_logo.url,
+        'category':service.category,
+        'description':service.description,
+        'direction':service.direction,
+        'facebook_url':service.facebook_url,
+        'liked':str(service.num_likes),
+        'created':str(created),
+    }
+
 
 class ServiceList(ListView):
     template_name = 'service/list_service.html'
