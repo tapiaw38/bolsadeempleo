@@ -25,6 +25,16 @@
                 </div>
                 <p class="mt-2 mb-2 text-muted text-center">&copy; Municipalidad de Tinogasta <script>document.write(new Date().getFullYear());</script></p>
             </div>
+
+            <div class="media d-sm-none d-md-none d-lg-block" style="position: fixed; right: 100px; width: 25%; height: auto;">
+                <div class="media-body">
+                    {% include 'advertising/max_pub_2.html' %}
+                </div>
+                <div class="media-body text-center pt-3">
+                    <img src="{% static 'img/contacto2.png' %}" alt="" width="280" height="auto">
+                </div>
+            </div>
+
             <div class="col-sm-12 d-lg-none d-md-block">
                 <div class="media pt-2 pb-2">
                     <div class="media-body">
@@ -35,15 +45,9 @@
               {% for service  in service %}
                 {% include 'service/service_card.html' %}
               {% endfor %}
-            <div class="col-sm-12 d-lg-none d-md-block">
-                <div class="media pt-2 pb-2">
-                    <div class="media-body">
-                        {% include 'advertising/min_pub_2.html' %}
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+
 
 
 
