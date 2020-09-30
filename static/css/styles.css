@@ -9,6 +9,29 @@
     background-position: top center;
 }
 
+.image-trato{
+  background-image: linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)
+    ),  url('/static/img/image-trato.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.image-content {
+  width: auto;
+  height: 400px;
+}
+
+.image-content > img{
+  background-color: #1f8ca7;
+  object-fit: contain;
+}
+
 .color-expand:hover{
     filter: saturate(3);
     transform: scale(1.1);
@@ -129,6 +152,18 @@ footer{
 {
     transform: translateY(-3px)
 }
+
+.btn-circle{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.content-btn {
+  position: fixed;
+  margin-left: 250px;
+}
+
 
 #imagenMostrada
 {

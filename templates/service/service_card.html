@@ -36,13 +36,24 @@
     loader-->
                                
     </div>
+    {% if not service.picture_logo and service.description != None %}
+    <div id="text{{service.id}}" class="image-trato text-center p-3 m-2">
+        <h5 id="p{{service.id}}" class="h2" >{{service.description}}</h5>
+    </div>
+    {% endif %}
+
     {% if service.picture_logo %}
+    <p class="mt-1 mb-0 text-primary">{{service.description}}</p>  
+
     <a href="" data-toggle="modal" data-target="#modal{{service.id}}">
         <img class="img-fluid mt-3 border rounded img-aparece" src="{{ service.picture_logo.url }}" alt="{{ service.title }}" style="width: 100%; height: auto;">
     </a>
-    <span class="badge badge-primary">{{service.category}}</span>
     {% endif %}
-    <p class="mt-1 mb-0 text-primary">{{service.description}}</p>
+    <div id="images{{service.id}}" class="row">
+
+    </div>
+    <span class="badge badge-primary">{{service.category}}</span>
+    
     <form class="form-inline">
         {% if service.direction %}
         <img src="{% static 'img/sitio.png'%}" alt="" width="20" height="20" class=" mr-2"><p class="mt-0 mb-1 text-secondary">{{service.direction}}</p>
@@ -80,6 +91,7 @@
 </div>
 {% include 'service/image_modal.html' %}
 {% include 'service/modal_delete.html' %}
+{% include 'service/image_modal2.html' %}
 
 {% block js %}
 <script>

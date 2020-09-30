@@ -29,7 +29,8 @@
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+  {% block js %}
+  {% endblock js %}
   <script>
       //liked
       $('body').on('click', '.like',function(event){
@@ -129,11 +130,59 @@
         });
 
 
+  $(document).ready(function(){
+    $.ajax({
+        type:"get",
+        url: "{% url 'image_list' %}",
+        data: $(this).serialize(),
+        dataType: "json",
+        cache:false,
+        success: function(response){
 
+          $.each(response, function(index,element){
+            id = element.id;
+            service = element.service;
+
+            html = '<a class="mx-auto d-block" href="" data-toggle="modal" data-target="#imageModal'+id+'"><img id="image'+service+'" class="mx-auto d-block img-fluid m-2 border rounded" src="'+element.image+'" alt="" style="width: auto; height: auto;"></a>';
+
+            $("#images"+service).append(html);
+            $("#text"+service).removeClass(['image-trato','m-2','p-3'])
+            $("#p"+service).removeClass('h2')
+            var obj = $("#images"+service);
+            var numImages = obj.find('img').toArray().length;
+
+            if (numImages > 1){
+              var styles = {
+                width:'150px',
+                display: 'inline-block',
+              };
+              $("#images"+service).find('img').css(styles);
+            }
+
+            modal = '<div class="modal fade" id="imageModal'+id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+            modal += '<div class="modal-dialog modal-lg" role="document">';
+            modal += '<div class="modal-content">';
+            modal += '<div>';
+            modal += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+            modal += '<span aria-hidden="true">&times;</span>';
+            modal += '</button>';
+            modal += '</div>';
+            modal += '<div class="modal-body">';
+            modal += '<img class="mx-auto d-block img-fluid m-2 border rounded" src="'+element.image+'" alt="" style="width: auto; height: auto;">'
+            modal += '</div>';
+            modal += '</div>';
+            modal += '</div>';
+            modal += '</div>';
+
+            $('#modal2').append(modal);
+          })
+  
+        }
+      });
+  })
   </script>
   
-  {% block js %}
-  {% endblock js %}
+
     
 </body>
 </html>

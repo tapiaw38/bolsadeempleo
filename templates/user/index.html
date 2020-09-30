@@ -124,12 +124,13 @@
           dataType: "json",
           cache:false,
           success: function(response){
-            var html;
+            console.log(response);
+            var htmlIndex;
             var url_facebook = "{% static 'img/facebook.png' %}";
             var sitio = "{% static 'img/sitio.png'%}";
             var estrella = "{% static 'img/estrella.png' %}";
             var eliminar = "{% static 'img/eliminar.png' %}";
-            
+
             $.each(response, function(index,element){
               if (element.user == element.request_user) {
                 var elim = '<a type="button" class="mb-3 float-right ml-3 eliminar" name="'+element.id+'"><img src="'+eliminar+'" alt="" width="30" height="30" class="color-expand"></a>';
@@ -146,33 +147,34 @@
               }else{
                 directions = '<img src="'+sitio+'" alt="" width="20" height="20" class="d-none mr-2"><p class="mt-0 mb-1 text-secondary"></p></form>';
               };
+
+              if (element.picture_logo != 0){
+                pictures = '<p class="mt-1 mb-0 text-primary">'+element.description+'</p><img class="img-fluid mt-3 border rounded" src="'+element.picture_logo+'" alt="'+element.title+'">'
+              }else{
+                pictures= '<div id="text'+element.id+'" class="image-trato text-center p-3 m-2"><h5 id="p'+element.id+'" class="h2" >'+element.description+'</h5></div>'
+              };
               
-              html = '<div class="target col-lg-3 col-md-3 col-sm-12 p-3 m-2 none'+element.id+'" style="max-width: 20rem;">',
-              html += '<div class="media">';
-              html +='<img class="mr-3 rounded-circle" src="'+element.picture+'" alt="'+element.user+'" width="50" height="50">',
-              html +='<div class="media-body">',
-              html +='<h5 class="mt-0">@'+element.user+'</h5>',
-              html +='<h6 class="ml-0 mt-1">'+element.title+'</h6></div>',
-              html += facebook,
-              html +='</div>',
-              html +='<img class="img-fluid mt-3 border rounded" src="'+element.picture_logo+'" alt="'+element.title+'">',
-              html +='<p><span class="badge badge-primary">'+element.category+'</span></p>',
-              html +='<p class="mt-1 mb-0 text-primary">'+element.description+'</p>',
-              html +=' <form class="form-inline">',
-              html +=directions,
-              html +='<span class="badge ml-0 mt-0">'+element.created+'</span>',
-              html +='<div class="mt-0 mb-3">',
-              html +='',
-              html +='',
-              html +='</div>',
-              html +='</div>',
-              html +='</div>';
-              
-                        
-              $("#list-index").append(html);
+              htmlIndex = '<div class="target col-lg-3 col-md-3 col-sm-12 p-3 m-2 none'+element.id+'" style="max-width: 20rem;">',
+              htmlIndex += '<div class="media">';
+              htmlIndex +='<img class="mr-3 rounded-circle" src="'+element.picture+'" alt="'+element.user+'" width="50" height="50">',
+              htmlIndex +='<div class="media-body">',
+              htmlIndex +='<h5 class="mt-0">@'+element.user+'</h5>',
+              htmlIndex +='</div>',
+              htmlIndex += facebook,
+              htmlIndex +='</div>',
+              htmlIndex += pictures,
+              htmlIndex +='',
+              htmlIndex +='<div id="images'+element.id+'" class="row">',
+              htmlIndex +='</div>'
+              htmlIndex +='<span class="badge badge-primary">'+element.category+'</span>',
+              htmlIndex +=directions,
+              htmlIndex +='<span class="badge ml-0 mt-0">'+element.created+'</span>',
+              htmlIndex +='<div class="mt-0 mb-3">',
+              htmlIndex +='</div>',
+              htmlIndex +='</div>',
+              htmlIndex +='</div>';
+              $("#list-index").append(htmlIndex);
             })//end each
-            
-            
           }//end success
       });//end ajax
 

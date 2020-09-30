@@ -11,58 +11,58 @@ import sys
 class Service(models.Model):
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     person = models.ForeignKey(Person, null=False, blank=False, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
     category = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     direction = models.CharField(max_length=100, null=True, blank=True)
     facebook_url = models.CharField(max_length=100, null=True, blank=True)
-    picture_logo = models.ImageField(upload_to="service/pictures")
-    calification = models.FloatField(default=0)
+    picture_logo = models.ImageField(upload_to="service/pictures", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     liked = models.ManyToManyField(Person, default=None, blank=True, related_name='liked')
     created_like = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        imageTemproary = Image.open(self.picture_logo)
-        imageTemproary = imageTemproary.convert('RGB')
-        outputIoStream = BytesIO()
+        if self.picture_logo:
 
-        w, h = imageTemproary.size
+            imageTemproary = Image.open(self.picture_logo)
+            imageTemproary = imageTemproary.convert('RGB')
+            outputIoStream = BytesIO()
 
-        if w > 2000:
-            w = int(w/4)
-            h = int(h/4)
+            w, h = imageTemproary.size
 
-        elif h > 2000:
-            w = int(w/4)
-            h = int(h/4)
+            if w > 2000:
+                w = int(w/4)
+                h = int(h/4)
 
-        elif w > 1400:
-            w = int(w/3)
-            h = int(h/3)
+            elif h > 2000:
+                w = int(w/4)
+                h = int(h/4)
 
-        elif h > 1400:
-            w = int(w/3)
-            h = int(h/3)
+            elif w > 1400:
+                w = int(w/3)
+                h = int(h/3)
 
-        elif w > 800:
-            w = int(w/2)
-            h = int(h/2)
+            elif h > 1400:
+                w = int(w/3)
+                h = int(h/3)
 
-        elif h > 800:
-            w = int(w/2)
-            h = int(h/2)
+            elif w > 800:
+                w = int(w/2)
+                h = int(h/2)
 
-        imageTemproaryResized = imageTemproary.resize((w,h))
+            elif h > 800:
+                w = int(w/2)
+                h = int(h/2)
 
-        imageTemproaryResized.save(outputIoStream , format='JPEG', quality=150)
-        outputIoStream.seek(0)
-        self.picture_logo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" %self.picture_logo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+            imageTemproaryResized = imageTemproary.resize((w,h))
+
+            imageTemproaryResized.save(outputIoStream , format='JPEG', quality=150)
+            outputIoStream.seek(0)
+            self.picture_logo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" %self.picture_logo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         super(Service, self).save(*args, **kwargs)
 
     def __str__(self):
-        return '@{}, servicio: {}'.format(self.person.user.username, self.title)
+        return 'servicio: {}'.format(self.person.user.username)
 
 
 
@@ -84,7 +84,49 @@ class Like(models.Model):
     def __str__(self):
         return str(self.service)
 
+class imageService(models.Model):
+    service = models.ForeignKey(Service, verbose_name="services", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="service/pictures")
 
+    def save(self, *args, **kwargs):
+        if self.image:
+
+            imageTemproary = Image.open(self.image)
+            imageTemproary = imageTemproary.convert('RGB')
+            outputIoStream = BytesIO()
+
+            w, h = imageTemproary.size
+
+            if w > 2000:
+                w = int(w/4)
+                h = int(h/4)
+
+            elif h > 2000:
+                w = int(w/4)
+                h = int(h/4)
+
+            elif w > 1400:
+                w = int(w/3)
+                h = int(h/3)
+
+            elif h > 1400:
+                w = int(w/3)
+                h = int(h/3)
+
+            elif w > 800:
+                w = int(w/2)
+                h = int(h/2)
+
+            elif h > 800:
+                w = int(w/2)
+                h = int(h/2)
+
+            imageTemproaryResized = imageTemproary.resize((w,h))
+
+            imageTemproaryResized.save(outputIoStream , format='JPEG', quality=150)
+            outputIoStream.seek(0)
+            self.image = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" %self.image.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        super(imageService, self).save(*args, **kwargs)
 
 """
 class Post(models.Model):

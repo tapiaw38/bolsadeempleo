@@ -1,5 +1,5 @@
 from django import forms
-from service.models import Service
+from service.models import Service, imageService
 
 
 class ServiceForm(forms.ModelForm):
@@ -11,7 +11,6 @@ class ServiceForm(forms.ModelForm):
         fields = (
             'user', 
             'person', 
-            'title', 
             'category', 
             'description', 
             'direction', 
@@ -42,3 +41,8 @@ class ServiceForm(forms.ModelForm):
         widgets = {
             'category':forms.Select(choices=CATEGORY_CHOICES,attrs={'class': 'form-control'}),
         }
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = imageService
+        fields = ('__all__')

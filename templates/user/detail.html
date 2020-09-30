@@ -56,13 +56,28 @@
     <div class="container">
         <div class="row mt-3">
             {% for service in services %}
-            <div class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-block justify-content-center align-items-center" id="cont">
+            <div class="col-sm-4 p-2 d-block justify-content-center align-items-center" id="cont">
+                
+                {% if service.picture_logo %}
                 <a href="{% url 'service_detail' service.pk %}" class="border">
                     <img src="{{ service.picture_logo.url }}" alt="{{ service.title }}" class="img-fluid">
                 </a>
                 <div class="">
-                    <p class="text-primary">{{service.title}}</p>
+                    <p class="text-primary">{{service.description}}</p>
                 </div>
+                {% endif %}
+                {% if not service.picture_logo and service.description != None %}
+                <a href="{% url 'service_detail' service.pk %}" class="border">
+                    <div id="text{{service.id}}" class="image-trato text-center p-3">
+                        <h5 id="p{{service.id}}" class="h2" >{{service.description}}</h5>
+                    </div>
+                </a>
+                {% endif %}
+                <a href="{% url 'service_detail' service.pk %}" class="border">
+                    <div id="images{{service.id}}" class="row">
+
+                    </div>
+                </a>
             </div>
             {% endfor %}
         </div>
