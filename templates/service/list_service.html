@@ -31,7 +31,16 @@
                     {% include 'advertising/max_pub_2.html' %}
                 </div>
                 <div class="media-body text-center pt-3">
-                    <img src="{% static 'img/contacto2.png' %}" alt="" width="280" height="auto">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{% static 'img/contacto2.png' %}" alt="" width="280" height="auto">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'img/desarrollo.png' %}" alt="" width="280" height="auto">
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
 
