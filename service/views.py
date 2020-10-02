@@ -131,7 +131,7 @@ def service_create(request):
     return render(request, 'service/new.html', context)
 
 def image_service(request):
-    images = imageService.objects.all()
+    images = imageService.objects.all().order_by("-id")
     images = [images_serializer(image) for image in images]
     return HttpResponse(json.dumps(images), content_type='application/json')
 
