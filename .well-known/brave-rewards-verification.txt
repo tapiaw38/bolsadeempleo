@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: tratohecho.net.ar
-Token: dc7fe2587fda5e2797572204b1da548d7d9229c9f2ea126ae03c9324ca08d071
